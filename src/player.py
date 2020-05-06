@@ -20,5 +20,6 @@ class Player:
 
     def __str__(self):
         return f"My name is {self.name}. I am level {self.level}. My HP is {self.hp}. I am in {self.current_room}. I am holding {self.items} items."
+        
 
 
