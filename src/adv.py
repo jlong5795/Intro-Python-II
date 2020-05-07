@@ -11,6 +11,7 @@ room = {
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."""),
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west to north. The smell of gold permeates the air."""),
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."""),
+    'graveyard': Room("Graveyard", "This is where people go to when they die. Are you next?")
 }
 
 items = {
@@ -25,6 +26,7 @@ room['outside'].add_item(items['shovel'])
 # I modified this to make it work with my class structure. Not sure how to get this to work another way.
 
 room['outside'].n_to = room['foyer']
+room['outside'].s_to = room['graveyard']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
 room['foyer'].e_to = room['narrow']
@@ -32,6 +34,7 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to =room['treasure']
 room['treasure'].s_to = room['narrow']
+room['graveyard'].n_to = room['outside']
 
 #
 # Main
@@ -62,7 +65,7 @@ while True:
         print('no items')
     else:
         for item in player.current_room.items:
-            item.__str__()
+            print(f'{item.name}')
     userInput = input('Which way would you like to move <n, s, e, w> or <q> to quit: ').lower().split(' ')
     
     if len(userInput) > 2 or len(userInput) < 1:
