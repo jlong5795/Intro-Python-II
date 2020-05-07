@@ -59,7 +59,7 @@ print("\033[1;36;40m \n")
 # If the user enters "q", quit the game.
 
 while True:
-    print(f'Your location: {player.current_room}. \n Description: {player.current_room.description}.')
+    print(f'Your location: {player.current_room.name}. \nDescription: {player.current_room.description}.')
     print('This room contains: ')
     if len(player.current_room.items) == 0:
         print('no items')
