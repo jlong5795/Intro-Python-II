@@ -14,25 +14,25 @@ room = {
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['outside'].n_to = 'foyer'
+room['foyer'].s_to = 'outside'
+room['foyer'].n_to = 'overlook'
+room['foyer'].e_to = 'narrow'
+room['overlook'].s_to = 'foyer'
+room['narrow'].w_to = 'foyer'
+room['narrow'].n_to ='treasure'
+room['treasure'].s_to = 'narrow'
 
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-jason = Player('Jason', 'outside')
+player = Player('Jason', 'outside')
 
 # Write a loop that:
 #
-# * Prints the current room name
+# * Prints the current room name - done
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 #
@@ -42,4 +42,24 @@ jason = Player('Jason', 'outside')
 # If the user enters "q", quit the game.
 
 while True:
+    print(f'Your location: {player.current_room}. \n Description: {room[player.current_room].description}')
+    userInput = input('Which way would you like to move <n, s, e, w> or <q> to quit: ')
     
+    try:
+        if userInput == 'n':
+            player.current_room = room[player.current_room].n_to
+            print(f'You move north into {player.current_room} \n' )
+        elif userInput == 's':
+            player.current_room = player.current_room.s_to
+            print(f'You move south into {player.current_room} \n')
+        elif userInput == 'e':
+            player.current_room = player.current_room.e_to
+            print(f'You move east into {player.current_room} \n')
+        elif userInput == 'w':
+            player.current_room = player.current_room.w_to
+            print(f'You move west into {player.current_room} \n')
+        elif userInput == 'q':
+            print('Thanks for playing! See you in the next adventure! \n')
+            break
+    except:
+        print('\n You cannot move any further in the chosen direction! Pick a different way to go.')

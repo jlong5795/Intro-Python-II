@@ -13,9 +13,6 @@ class Player:
     def move(self, destination):
         self.location = destination
 
-    def changeHp(self, change):
-        self.hp = self.hp + change
-
     def __str__(self):
         return f"My name is {self.name}. I am in {self.current_room}. I am holding {self.items} items."
         
